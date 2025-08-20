@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from sqlalchemy.exc import IntegrityError
 
-app = Flask("app")
+app = Flask(__name__)
 app.config.from_pyfile("default_config.py")
 app.config.from_envvar("APP_SETTINGS", silent=True)
 
