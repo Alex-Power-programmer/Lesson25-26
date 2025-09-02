@@ -17,14 +17,6 @@ jobs:
     steps:
       - name: clone code
         uses: actions/checkout@v2
-      - name: Set up SSH
-        run: |
-          mkdir deploy
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          #Добавьте сервер в known_hosts для избежания подтверждения
-          ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
-
       - name: render configs
         run: |
           mkdir deploy
