@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Set up SSH
         run: |
-          mkdir -p ~/.ssh
+          mkdir deploy
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           #Добавьте сервер в known_hosts для избежания подтверждения
