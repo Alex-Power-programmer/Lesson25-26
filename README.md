@@ -1,3 +1,3 @@
-# flask_app_deploy
+# flask_app_deploy (Docker, Docker-compose, CI/CD)
 
-Простейший проект на Flask с миграциями для курса Python разработки от SkyPro
+Простейший проект на Flask с миграциями 
