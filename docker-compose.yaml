@@ -4,7 +4,7 @@ services:
   api:
     build:
       context: .
-    image: alex3981/skypro_python_app
+    image: alex3981/skypro_alex_app
     ports:
       - 80:80
     volumes:
@@ -12,12 +12,12 @@ services:
     depends_on:
       pg:
         condition: service_healthy
-      migration:
+      migrations:
         condition: service_completed_successfully
-  migration:
+  migrations:
     build:
       context: .
-    image: alex3981/skypro_python_app
+    image: alex3981/skypro_alex_app
     volumes:
       - ./docker_config.py:/code/default_config.py
     depends_on:
@@ -25,7 +25,7 @@ services:
         condition: service_healthy
     command: flask db upgrade
   pg:
-    image: postgres:latest
+    image: postgres:15
     environment:
       POSTGRES_USER: flask_app
       POSTGRES_PASSWORD: flask_app_password
@@ -33,7 +33,7 @@ services:
     volumes:
       - ./pg_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -U flask_app -d flask_app"]
       interval: 5s
       timeout: 5s
       retries: 5
